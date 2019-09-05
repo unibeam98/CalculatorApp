@@ -233,5 +233,5 @@ public class MainActivity extends AppCompatActivity
         checkInput = new CheckInput();
         counterByEquation = new CounterByEquation(equation);
     }
-    
+
 }

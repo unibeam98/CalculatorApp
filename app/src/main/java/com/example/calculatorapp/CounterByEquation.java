@@ -14,33 +14,23 @@ public class CounterByEquation {
         this.equation = equation;
     }
 
-    /*
-     *           (  )   * - / +  ^  !  x^(-1)  %  e  π   3.11 5
-     *
-     *           ((3^5)+5^(-1)+((6%4)+e)*6)*2
-     *           3^5 5^-1 + 6%4 e + 6 * +
-     * */
     String solveEquation(){
 
         int length = equation.length();
 
-        /*
-         * 由中缀表达式求后缀表达式
-         * */
+        //求后缀表达式
         stack = new Stack<>();
 
         for(int i=0;i<length;i++){
 
             char curChar = equation.charAt(i);
-            if(curChar=='('||curChar=='+'||curChar=='-'||curChar=='*'||curChar=='/'||curChar=='%'||curChar=='^'){
+            if(curChar=='+'||curChar=='-'||curChar=='*'||curChar=='/'||curChar=='%'){
 
                 String top = "";
                 if(!stack.empty())
                     top = stack.peek();
-                if(curChar=='(')  {
-                    stack.push(curChar+"");
-                } else if (curChar == '%' || curChar == '^') {
-                    if(!stack.empty()&&(top.equals("^")||top.equals("%"))){
+                if (curChar == '%') {
+                    if(!stack.empty() && top.equals("%")){
                         queue[count++] = stack.pop();
                     }
                     stack.push(curChar+"");
@@ -48,38 +38,28 @@ public class CounterByEquation {
                 } else if ((curChar == '+' || curChar == '-')) {
                     while (true) {
                         if (stack.empty()) break;
-                        if (stack.peek().equals("(")) break;
                         queue[count++] = stack.pop();
                     }
                     stack.push(curChar+"");
                 } else if (curChar == '*' || curChar == '/') {
                     if (!stack.empty()){
                         while (true) {
-                            if (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("%") || stack.peek().equals("^")) {
+                            if (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("%")) {
                                 queue[count++] = stack.pop();
                             }else{
                                 break;
                             }
                             if (stack.empty()) break;
-                            if (stack.peek().equals("(")) break;
                         }
                     }
                     stack.push(curChar+"");
                 }
-            }
-            else if (curChar==')'){
-                while(true){
-                    String tmp = stack.pop();
-                    if(tmp.equals("(")) break;
-                    else queue[count++] = tmp;
-                }
-            }
-            else{  //数字
+            } else{  //数字
                 String numStr = curChar+"";
                 for(i++;i<length;i++)
                 {
                     char curBackChar = equation.charAt(i);
-                    if(curBackChar==')'||curBackChar=='+'||curBackChar=='-'||curBackChar=='*'||curBackChar=='/'||curBackChar=='%'||curBackChar=='^'){
+                    if(curBackChar=='+'||curBackChar=='-'||curBackChar=='*'||curBackChar=='/'||curBackChar=='%'){
                         i--;
                         break;
                     }
@@ -99,7 +79,7 @@ public class CounterByEquation {
         for(int i=0;i<count;i++){
             logStr+=queue[i]+" ";
         }
-        //Log.e("ERROR!!!!!!!!!!!!",logStr);
+
 
         /*由中缀表达式求值*/
         for(int i=0;i<count;i++){
@@ -124,34 +104,16 @@ public class CounterByEquation {
                 continue;
             }
 
-            if(member.equals("+")||member.equals("-")||member.equals("*")||member.equals("/")||member.equals("%")){
+            if(member.equals("+")||member.equals("-")||member.equals("*")||member.equals("/")||member.equals("%")||member.equals("^")){
                 double first = Double.parseDouble(queue[i-2]);
                 double second = 0;
                 if(!queue[i-1].equals("-"))
                     second = Double.parseDouble(queue[i-1]);
                 if (member.equals("+")) first += second;
-                if (member.equals("-")){
-                    //处理  x^(-1)的情况
-                    if(queue[i+1].equals("^")){
-                        first = 1 / first;
-                        //为了不影响接下来的运算，在数组去除^
-                        for(int j = i+1;j<count-1;j++)
-                            queue[j] = queue[j+1];
-                        count--;
-                    }else{
-                        first -= second;
-                    }
-                }
+                if (member.equals("-")) first -= second;
                 if (member.equals("*")) first *= second;
                 if (member.equals("/")) first /= second;
                 if (member.equals("%")) first %= second;
-                if (member.equals("^")){
-                    double sum = 1;
-                    for(int j = (int)second;j>0;j--){
-                        sum*=first;
-                    }
-                    first = sum;
-                }
                 queue[i-2] = first+"";
                 //前移
                 for(int j = i-1;j<count-2;j++){
@@ -163,5 +125,4 @@ public class CounterByEquation {
         }
         return queue[0];
     }
-
 }
