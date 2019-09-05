@@ -233,15 +233,5 @@ public class MainActivity extends AppCompatActivity
         checkInput = new CheckInput();
         counterByEquation = new CounterByEquation(equation);
     }
-
-
-    //git第一次修改测试
-
-
-    //测试
-
-    @Override
-    public void addContentView(View view, ViewGroup.LayoutParams params) {
-        super.addContentView(view, params);
-    }
+    
 }
