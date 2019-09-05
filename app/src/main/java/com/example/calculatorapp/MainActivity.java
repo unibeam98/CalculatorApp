@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -231,5 +232,16 @@ public class MainActivity extends AppCompatActivity
         resultText = (TextView) findViewById(R.id.result);
         checkInput = new CheckInput();
         counterByEquation = new CounterByEquation(equation);
+    }
+
+
+    //git第一次修改测试
+
+
+    //测试
+
+    @Override
+    public void addContentView(View view, ViewGroup.LayoutParams params) {
+        super.addContentView(view, params);
     }
 }
