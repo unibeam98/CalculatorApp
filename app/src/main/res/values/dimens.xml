@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="gridview_item_height">195.5dp</dimen>
+    <dimen name="gridview_item_width">120dp</dimen>
+    <dimen name="convert_title_tv_size">15sp</dimen>
+    <dimen name="convert_title_tv_paddingTop">30dp</dimen>
+    <dimen name="switch_btn_marginLeft">20dp</dimen>
+    <dimen name="switch_btn_marginTop">28dp</dimen>
+    <dimen name="textview_marginLeftorRight">15dp</dimen>
+    <!-- capital_convert.xml -->
+    <dimen name="capital_convert_text_size">26sp</dimen>
+    <!-- unit_convert.xml -->
+    <dimen name="pre_goal_unit_tv_size">23sp</dimen>
+    <dimen name="input_result_num_tv_size">26sp</dimen>
+    <dimen name="pre_goal_unit_short_tv_size">13sp</dimen>
+    <dimen name="custom_dialog_height">236dp</dimen>
+    <dimen name="custom_dialog_titleSize">15sp</dimen>
+    <dimen name="custom_dialog_titleHeight">52dp</dimen>
+    <dimen name="custom_dialog_margin">8dp</dimen>
+    <dimen name="custom_dialog_corner_padding">6dp</dimen>
+    <dimen name="picker_view_margin">40dp</dimen>
+</resources>
