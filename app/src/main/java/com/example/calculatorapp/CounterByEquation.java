@@ -81,7 +81,7 @@ public class CounterByEquation {
         }
 
 
-        /*由中缀表达式求值*/
+        //由中缀表达式求值
         for(int i=0;i<count;i++){
             String member = queue[i];
             int numLength = member.length();

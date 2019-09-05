@@ -20,9 +20,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="fill"
             android:layout_marginTop="10sp"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:gravity="bottom|right"
             android:hint="输入算式进行计算"
+            android:maxLength="34"
             android:maxLines="4"
             android:paddingRight="15sp"
             android:textSize="40sp" />
@@ -32,11 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
+            android:layout_weight="4"
             android:gravity="top|right"
-            android:paddingRight="15sp"
-            android:layout_weight="3"
             android:hint="结果"
             android:maxLines="1"
+            android:paddingRight="15sp"
             android:textSize="35sp" />
 
     </LinearLayout>

@@ -46,7 +46,6 @@ public class LengthChange extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar_length);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view_length);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,6 +53,7 @@ public class LengthChange extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -105,10 +105,6 @@ public class LengthChange extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {
-
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
 
