@@ -28,4 +28,6 @@
     <dimen name="custom_dialog_margin">8dp</dimen>
     <dimen name="custom_dialog_corner_padding">6dp</dimen>
     <dimen name="picker_view_margin">40dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

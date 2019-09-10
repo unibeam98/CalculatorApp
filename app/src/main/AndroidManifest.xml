@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/icon1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".LengthChange"
+            android:name=".help"
+            android:label="help"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Long.unit_activity" />
+        <activity
+            android:name=".Long.LengthChange"
             android:label="长度单位换算"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -24,8 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".helpActivity" />
 
+        <activity android:name=".Long.unit_activity" />
     </application>
 
 </manifest>

@@ -3,8 +3,7 @@ package com.example.calculatorapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.calculatorapp.Long.LengthChange;
 
 import android.os.CancellationSignal;
 import android.view.View;
@@ -22,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -182,7 +180,7 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.action_help:
-                Intent intent = new Intent(MainActivity.this,helpActivity.class);
+                Intent intent = new Intent(MainActivity.this,help.class);
                 startActivity(intent);
                 break;
              default:
@@ -202,7 +200,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(MainActivity.this,LengthChange.class);
+            Intent intent = new Intent(MainActivity.this, LengthChange.class);
             startActivity(intent);
             finish();
 //        } else if (id == R.id.nav_slideshow) {
