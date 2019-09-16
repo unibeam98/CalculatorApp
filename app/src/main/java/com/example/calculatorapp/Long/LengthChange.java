@@ -3,6 +3,7 @@ package com.example.calculatorapp.Long;
 import android.os.Bundle;
 import android.content.Intent;
 
+import com.example.calculatorapp.CheckInput;
 import com.example.calculatorapp.MainActivity;
 import com.example.calculatorapp.R;
 import com.example.calculatorapp.help;
@@ -23,13 +24,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LengthChange extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
 
-    private String resultUnit;
+    private TextView value1, value2,unit1,unit2;
+
+    private String resultUnit="",backdata_unit1,backdata_unit2;
+
+    private CheckInput_unit checkInput_unit;
+
+    private LongChange longChange;
+
+    private Button buttons[] = new Button[13];
+
+    private int buttonIDs[] = new int[]{
+            R.id.btn_N0,R.id.btn_N1, R.id.btn_N2, R.id.btn_N3,R.id.btn_N4, R.id.btn_N5, R.id.btn_N6,
+            R.id.btn_N7, R.id.btn_N8, R.id.btn_N9,R.id.btn_point,R.id.AC_change,R.id.Del_change
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +53,13 @@ public class LengthChange extends AppCompatActivity
         setContentView(R.layout.activity_length_change);
         Toolbar toolbar = findViewById(R.id.toolbar_length);
         setSupportActionBar(toolbar);
-        TextView unit1 = (TextView) findViewById(R.id.unit1);
-        TextView unit2 = (TextView) findViewById(R.id.unit2);
+        unit1 = (TextView) findViewById(R.id.unit1);
+        unit2 = (TextView) findViewById(R.id.unit2);
         unit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LengthChange.this,unit_activity.class);
-                startActivityForResult(intent,1);
+                Intent intent1 = new Intent(LengthChange.this,unit_activity.class);
+                startActivityForResult(intent1,1);
 
             }
         });
@@ -51,13 +67,13 @@ public class LengthChange extends AppCompatActivity
         unit2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LengthChange.this,unit_activity.class);
-                startActivityForResult(intent,2);
+                Intent intent2 = new Intent(LengthChange.this,unit_activity.class);
+                startActivityForResult(intent2,2);
 
             }
         });
 
-
+        init();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view_length);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,13 +88,21 @@ public class LengthChange extends AppCompatActivity
     //接受unit返回的数据
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode){
-            case 1:
-                if(resultCode == RESULT_OK){
-                    resultUnit = data.getStringExtra("data_return_unit");
-                    Toast.makeText(LengthChange.this,resultUnit,Toast.LENGTH_SHORT).show();
-                }
+        if(requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                backdata_unit1 = data.getStringExtra("data_return_unit");
+                Toast.makeText(LengthChange.this, backdata_unit1, Toast.LENGTH_SHORT).show();
+                unit1.setText(backdata_unit1);
+            }
         }
+        else {
+            if (requestCode == 2) {
+                backdata_unit2 = data.getStringExtra("data_return_unit");
+                Toast.makeText(LengthChange.this, backdata_unit2, Toast.LENGTH_SHORT).show();
+                unit2.setText(backdata_unit2);
+            }
+        }
+
     }
 
     @Override
@@ -140,5 +164,63 @@ public class LengthChange extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onClick(View view) {
+        int id_unit = view.getId();
+        Button button = (Button)findViewById(id_unit);
+        String string_unit = button.getText().toString();
+        switch (id_unit){
+            case R.id.btn_N0:
+            case R.id.btn_N1:
+            case R.id.btn_N2:
+            case R.id.btn_N3:
+            case R.id.btn_N4:
+            case R.id.btn_N5:
+            case R.id.btn_N6:
+            case R.id.btn_N7:
+            case R.id.btn_N8:
+            case R.id.btn_N9:
+                checkInput_unit.setEquationUnit(resultUnit);
+                if(checkInput_unit.checkNumberUnit()){
+                    resultUnit = checkInput_unit.getEquationUnit();
+                    resultUnit += string_unit;
+                }
+                break;
+            case R.id.Del_change:
+                checkInput_unit.setEquationUnit(resultUnit);
+                checkInput_unit.BackSpaceUnit();
+                resultUnit = checkInput_unit.getEquationUnit();
+                break;
+            case R.id.AC_change:
+                resultUnit = "";
+                value1.setText(resultUnit);
+                value2.setText(resultUnit);
+                break;
+            case R.id.btn_point:
+                checkInput_unit.setEquationUnit(resultUnit);
+                if(checkInput_unit.checkPointUnit()){
+                    resultUnit = checkInput_unit.getEquationUnit();
+                    resultUnit += string_unit;
+                }
+                break;
+        }
+        //结果
+        value1.setText(resultUnit);
+    }
+
+    public void init () {
+        int length = buttons.length;
+        for (int i = 0; i < length; i++) {
+            buttons[i] = (Button) findViewById(buttonIDs[i]);
+            buttons[i].setOnClickListener(this);
+        }
+        value1 = (TextView)findViewById(R.id.value1);
+        value2 = (TextView)findViewById(R.id.value2);
+        checkInput_unit = new CheckInput_unit();
+        longChange = new LongChange(resultUnit);
+
+    }
+
 }
 

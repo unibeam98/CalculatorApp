@@ -39,9 +39,9 @@ public class unit_activity extends AppCompatActivity {
     }
 
     private void initUnits() {
-        units km = new units("千米km");
+        units km = new units("千米");
         unitsList.add(km);
-        units m = new units("米m");
+        units m = new units("米");
         unitsList.add(m);
     }
 }
