@@ -56,7 +56,8 @@
                 android:hint="0"
                 android:maxLines="1"
                 android:paddingRight="15sp"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:maxEms="9"/>
 
         </LinearLayout>
 
@@ -82,7 +83,7 @@
                 android:layout_marginTop="10sp"
                 android:layout_weight="4"
                 android:gravity="top|center_horizontal"
-                android:hint="厘米"
+                android:hint="米"
                 android:maxLines="2"
                 android:paddingRight="15sp"
                 android:textSize="40sp"
@@ -108,7 +109,9 @@
                 android:hint="0"
                 android:maxLines="1"
                 android:paddingRight="15sp"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:maxEms="9"
+                />
         </LinearLayout>
 
     </LinearLayout>

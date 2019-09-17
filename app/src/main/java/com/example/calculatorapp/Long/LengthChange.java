@@ -46,6 +46,8 @@ public class LengthChange extends AppCompatActivity
             R.id.btn_N7, R.id.btn_N8, R.id.btn_N9,R.id.btn_point,R.id.AC_change,R.id.Del_change
     };
 
+    private int n;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class LengthChange extends AppCompatActivity
         setSupportActionBar(toolbar);
         unit1 = (TextView) findViewById(R.id.unit1);
         unit2 = (TextView) findViewById(R.id.unit2);
+        unit1.setText("千米");
+        unit2.setText("米");
         unit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,8 +85,6 @@ public class LengthChange extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
     //接受unit返回的数据
@@ -93,6 +95,7 @@ public class LengthChange extends AppCompatActivity
                 backdata_unit1 = data.getStringExtra("data_return_unit");
                 Toast.makeText(LengthChange.this, backdata_unit1, Toast.LENGTH_SHORT).show();
                 unit1.setText(backdata_unit1);
+                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
         else {
@@ -100,6 +103,7 @@ public class LengthChange extends AppCompatActivity
                 backdata_unit2 = data.getStringExtra("data_return_unit");
                 Toast.makeText(LengthChange.this, backdata_unit2, Toast.LENGTH_SHORT).show();
                 unit2.setText(backdata_unit2);
+                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
 
@@ -181,11 +185,13 @@ public class LengthChange extends AppCompatActivity
             case R.id.btn_N7:
             case R.id.btn_N8:
             case R.id.btn_N9:
+                n++;
                 checkInput_unit.setEquationUnit(resultUnit);
-                if(checkInput_unit.checkNumberUnit()){
+                if(checkInput_unit.checkNumberUnit() && n <= 9){
                     resultUnit = checkInput_unit.getEquationUnit();
                     resultUnit += string_unit;
                 }
+                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
                 break;
             case R.id.Del_change:
                 checkInput_unit.setEquationUnit(resultUnit);
@@ -218,8 +224,7 @@ public class LengthChange extends AppCompatActivity
         value1 = (TextView)findViewById(R.id.value1);
         value2 = (TextView)findViewById(R.id.value2);
         checkInput_unit = new CheckInput_unit();
-        longChange = new LongChange(resultUnit);
-
+        longChange = new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString());
     }
 
 }
