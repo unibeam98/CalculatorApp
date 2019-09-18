@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
+import com.example.calculatorapp.Scale.scale;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -203,11 +204,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, LengthChange.class);
             startActivity(intent);
             finish();
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_tools) {
-
         } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(MainActivity.this, scale.class);
+            startActivity(intent);
+            finish();
 
         } else if (id == R.id.nav_send) {
 

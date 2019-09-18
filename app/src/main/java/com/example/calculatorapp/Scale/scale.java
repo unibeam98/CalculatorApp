@@ -1,43 +1,39 @@
-package com.example.calculatorapp.Long;
-
-import android.os.Bundle;
-import android.content.Intent;
-
-import com.example.calculatorapp.Scale.scale;
-import com.example.calculatorapp.MainActivity;
-import com.example.calculatorapp.R;
-import com.example.calculatorapp.help;
-
-import android.view.View;
+package com.example.calculatorapp.Scale;
 
 import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LengthChange extends AppCompatActivity
+import com.example.calculatorapp.Long.CheckInput_unit;
+import com.example.calculatorapp.Long.LengthChange;
+import com.example.calculatorapp.Long.LongChange;
+import com.example.calculatorapp.MainActivity;
+import com.example.calculatorapp.R;
+import com.example.calculatorapp.help;
+import com.google.android.material.navigation.NavigationView;
+
+public class scale extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
 
     private TextView value1, value2,unit1,unit2;
 
     private String resultUnit="",backdata_unit1,backdata_unit2;
 
-    private CheckInput_unit checkInput_unit;
+    private CheckInput_scale checkInput_unit;
 
-    private LongChange longChange;
+    private ScaleChange scaleChange;
 
     private Button buttons[] = new Button[13];
 
@@ -52,17 +48,17 @@ public class LengthChange extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_length_change);
-        Toolbar toolbar = findViewById(R.id.toolbar_length);
-        setSupportActionBar(toolbar);
-        unit1 = (TextView) findViewById(R.id.unit1);
-        unit2 = (TextView) findViewById(R.id.unit2);
-        unit1.setText("千米");
-        unit2.setText("米");
+        setContentView(R.layout.activity_scale);
+        Toolbar toolbar1 = findViewById(R.id.toolbar_scale);
+        setSupportActionBar(toolbar1);
+        unit1 = (TextView) findViewById(R.id.unit1_scale);
+        unit2 = (TextView) findViewById(R.id.unit2_scale);
+        unit1.setText("十进制");
+        unit2.setText("八进制");
         unit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(LengthChange.this,unit_activity.class);
+                Intent intent1 = new Intent(scale.this, scale_unit_activity.class);
                 startActivityForResult(intent1,1);
 
             }
@@ -71,7 +67,7 @@ public class LengthChange extends AppCompatActivity
         unit2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(LengthChange.this,unit_activity.class);
+                Intent intent2 = new Intent(scale.this,scale_unit_activity.class);
                 startActivityForResult(intent2,2);
 
             }
@@ -81,7 +77,7 @@ public class LengthChange extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view_length);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar1, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -93,17 +89,17 @@ public class LengthChange extends AppCompatActivity
         if(requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 backdata_unit1 = data.getStringExtra("data_return_unit");
-                Toast.makeText(LengthChange.this, backdata_unit1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(scale.this, backdata_unit1, Toast.LENGTH_SHORT).show();
                 unit1.setText(backdata_unit1);
-                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+               // value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
         else {
             if (requestCode == 2) {
                 backdata_unit2 = data.getStringExtra("data_return_unit");
-                Toast.makeText(LengthChange.this, backdata_unit2, Toast.LENGTH_SHORT).show();
+                Toast.makeText(scale.this, backdata_unit2, Toast.LENGTH_SHORT).show();
                 unit2.setText(backdata_unit2);
-                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                //value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
 
@@ -136,7 +132,7 @@ public class LengthChange extends AppCompatActivity
                 finish();
                 break;
             case R.id.action_help:
-                Intent intent = new Intent(LengthChange.this, help.class);
+                Intent intent = new Intent(scale.this, help.class);
                 startActivity(intent);
                 break;
             default:
@@ -153,15 +149,15 @@ public class LengthChange extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-            Intent intent = new Intent(LengthChange.this, MainActivity.class);
+            Intent intent = new Intent(scale.this, MainActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {
+            Intent intent1 = new Intent(scale.this, LengthChange.class);
+            startActivity(intent1);
+            finish();
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(LengthChange.this, scale.class);
-            startActivity(intent);
-            finish();
 
         } else if (id == R.id.nav_send) {
 
@@ -194,19 +190,19 @@ public class LengthChange extends AppCompatActivity
                     resultUnit = checkInput_unit.getEquationUnit();
                     resultUnit += string_unit;
                 }
-                value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                //value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
                 break;
             case R.id.Del_change:
+                n--;
                 checkInput_unit.setEquationUnit(resultUnit);
                 checkInput_unit.BackSpaceUnit();
                 resultUnit = checkInput_unit.getEquationUnit();
-                n--;
                 break;
             case R.id.AC_change:
+                n = 0;
                 resultUnit = "";
                 value1.setText(resultUnit);
                 value2.setText(resultUnit);
-                n = 0;
                 break;
             case R.id.btn_point:
 //                n++;
@@ -227,11 +223,10 @@ public class LengthChange extends AppCompatActivity
             buttons[i] = (Button) findViewById(buttonIDs[i]);
             buttons[i].setOnClickListener(this);
         }
-        value1 = (TextView)findViewById(R.id.value1);
-        value2 = (TextView)findViewById(R.id.value2);
-        checkInput_unit = new CheckInput_unit();
-        longChange = new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString());
+        value1 = (TextView)findViewById(R.id.value1_scale);
+        value2 = (TextView)findViewById(R.id.value2_scale);
+        checkInput_unit = new CheckInput_scale();
+        scaleChange = new ScaleChange();
     }
 
 }
-
