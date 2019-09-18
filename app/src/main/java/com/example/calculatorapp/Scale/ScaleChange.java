@@ -1,4 +1,5 @@
 package com.example.calculatorapp.Scale;
 
-public class ScaleChange {
+public class ScaleChange{
+
 }
