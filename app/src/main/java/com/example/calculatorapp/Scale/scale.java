@@ -16,13 +16,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.calculatorapp.Long.CheckInput_unit;
+
 import com.example.calculatorapp.Long.LengthChange;
-import com.example.calculatorapp.Long.LongChange;
+
 import com.example.calculatorapp.MainActivity;
 import com.example.calculatorapp.R;
 import com.example.calculatorapp.help;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class scale extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
@@ -42,7 +45,7 @@ public class scale extends AppCompatActivity
             R.id.btn_N7, R.id.btn_N8, R.id.btn_N9,R.id.btn_point,R.id.AC_change,R.id.Del_change
     };
 
-    private int n;
+    private int n,i=0;
 
 
     @Override
@@ -91,6 +94,7 @@ public class scale extends AppCompatActivity
                 backdata_unit1 = data.getStringExtra("data_return_unit");
                 Toast.makeText(scale.this, backdata_unit1, Toast.LENGTH_SHORT).show();
                 unit1.setText(backdata_unit1);
+                resultUnit = "";
                // value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
@@ -99,6 +103,7 @@ public class scale extends AppCompatActivity
                 backdata_unit2 = data.getStringExtra("data_return_unit");
                 Toast.makeText(scale.this, backdata_unit2, Toast.LENGTH_SHORT).show();
                 unit2.setText(backdata_unit2);
+                resultUnit = "";
                 //value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
             }
         }
@@ -173,45 +178,89 @@ public class scale extends AppCompatActivity
         int id_unit = view.getId();
         Button button = (Button)findViewById(id_unit);
         String string_unit = button.getText().toString();
-        switch (id_unit){
-            case R.id.btn_N0:
-            case R.id.btn_N1:
-            case R.id.btn_N2:
-            case R.id.btn_N3:
-            case R.id.btn_N4:
-            case R.id.btn_N5:
-            case R.id.btn_N6:
-            case R.id.btn_N7:
-            case R.id.btn_N8:
-            case R.id.btn_N9:
-                n++;
-                checkInput_unit.setEquationUnit(resultUnit);
-                if(checkInput_unit.checkNumberUnit() && n <= 9){
+        if(unit1.getText().toString().equals("八进制")){
+            switch (id_unit){
+                case R.id.btn_N0:
+                case R.id.btn_N1:
+                case R.id.btn_N2:
+                case R.id.btn_N3:
+                case R.id.btn_N4:
+                case R.id.btn_N5:
+                case R.id.btn_N6:
+                case R.id.btn_N7:
+//            case R.id.btn_N8:
+//            case R.id.btn_N9:
+                    n++;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    if(checkInput_unit.checkNumberUnit() && n <= 9){
+                        resultUnit = checkInput_unit.getEquationUnit();
+                        resultUnit += string_unit;
+                    }
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.Del_change:
+                    n--;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    checkInput_unit.BackSpaceUnit();
                     resultUnit = checkInput_unit.getEquationUnit();
-                    resultUnit += string_unit;
-                }
-                //value2.setText(new LongChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
-                break;
-            case R.id.Del_change:
-                n--;
-                checkInput_unit.setEquationUnit(resultUnit);
-                checkInput_unit.BackSpaceUnit();
-                resultUnit = checkInput_unit.getEquationUnit();
-                break;
-            case R.id.AC_change:
-                n = 0;
-                resultUnit = "";
-                value1.setText(resultUnit);
-                value2.setText(resultUnit);
-                break;
-            case R.id.btn_point:
-//                n++;
-                checkInput_unit.setEquationUnit(resultUnit);
-                if(checkInput_unit.checkPointUnit()){
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.AC_change:
+                    n = 0;
+                    resultUnit = "";
+                    value1.setText(resultUnit);
+                    value2.setText(resultUnit);
+                    break;
+//                case R.id.btn_point:
+//                    checkInput_unit.setEquationUnit(resultUnit);
+//                    if(checkInput_unit.checkPointUnit()){
+//                        resultUnit = checkInput_unit.getEquationUnit();
+//                        resultUnit += string_unit;
+//                    }
+//                    break;
+            }
+        }
+        else {
+            switch (id_unit) {
+                case R.id.btn_N0:
+                case R.id.btn_N1:
+                case R.id.btn_N2:
+                case R.id.btn_N3:
+                case R.id.btn_N4:
+                case R.id.btn_N5:
+                case R.id.btn_N6:
+                case R.id.btn_N7:
+                case R.id.btn_N8:
+                case R.id.btn_N9:
+                    n++;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    if (checkInput_unit.checkNumberUnit() && n <= 9) {
+                        resultUnit = checkInput_unit.getEquationUnit();
+                        resultUnit += string_unit;
+                    }
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.Del_change:
+                    n--;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    checkInput_unit.BackSpaceUnit();
                     resultUnit = checkInput_unit.getEquationUnit();
-                    resultUnit += string_unit;
-                }
-                break;
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.AC_change:
+                    n = 0;
+                    resultUnit = "";
+                    value1.setText(resultUnit);
+                    value2.setText(resultUnit);
+                    break;
+//                case R.id.btn_point:
+//                    checkInput_unit.setEquationUnit(resultUnit);
+//                    if (checkInput_unit.checkPointUnit()) {
+//                        resultUnit = checkInput_unit.getEquationUnit();
+//                        resultUnit += string_unit;
+//                    }
+//                    break;
+            }
         }
         //结果
         value1.setText(resultUnit);
@@ -226,7 +275,7 @@ public class scale extends AppCompatActivity
         value1 = (TextView)findViewById(R.id.value1_scale);
         value2 = (TextView)findViewById(R.id.value2_scale);
         checkInput_unit = new CheckInput_scale();
-        scaleChange = new ScaleChange();
+        scaleChange = new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString());
     }
 
 }

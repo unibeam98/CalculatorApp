@@ -1,11 +1,15 @@
 package com.example.calculatorapp.Long;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CheckInput_unit {
     private String equation_unit;
 
     public void setEquationUnit(String equation_unit){
         this.equation_unit = equation_unit;
     }
+
 
     public String getEquationUnit(){
         return equation_unit;
@@ -21,6 +25,8 @@ public class CheckInput_unit {
             equation_unit = "";
         return true;
     }
+
+
 
     boolean checkPointUnit(){
         int length = equation_unit.length();

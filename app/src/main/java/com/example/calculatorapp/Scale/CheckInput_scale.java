@@ -1,7 +1,11 @@
 package com.example.calculatorapp.Scale;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CheckInput_scale {
     private String equation_unit;
+    private String scale;
 
     public void setEquationUnit(String equation_unit){
         this.equation_unit = equation_unit;
@@ -10,6 +14,7 @@ public class CheckInput_scale {
     public String getEquationUnit(){
         return equation_unit;
     }
+    public void setEquationScale(String scale){this.scale = scale;}
 
     boolean checkNumberUnit(){
         int length = equation_unit.length();
@@ -21,6 +26,8 @@ public class CheckInput_scale {
             equation_unit = "";
         return true;
     }
+
+
 
     boolean checkPointUnit(){
         int length = equation_unit.length();
