@@ -45,5 +45,7 @@ public class scale_unit_activity extends AppCompatActivity {
         unitsList.add(dec);
         units oct = new units("八进制");
         unitsList.add(oct);
+        units bin = new units("二进制");
+        unitsList.add(bin);
     }
 }

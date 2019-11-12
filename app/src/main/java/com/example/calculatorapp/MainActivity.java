@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity
             R.id.btn_AC, R.id.btn_Del, R.id.btn_Pre, R.id.btn_division, R.id.btn_N7, R.id.btn_N8,
             R.id.btn_N9, R.id.btn_mul, R.id.btn_N4, R.id.btn_N5, R.id.btn_N6, R.id.btn_sub,
             R.id.btn_N1, R.id.btn_N2, R.id.btn_N3, R.id.btn_add, R.id.btn_tra, R.id.btn_N0,
-            R.id.btn_point, R.id.btn_equal
+            R.id.btn_point, R.id.btn_equal,R.id.Involution,R.id.LBracket,R.id.RBracket,
+            R.id.Reciprocal,R.id.Factorial
     };
     //等式
     private String equation = "";
@@ -145,8 +146,50 @@ public class MainActivity extends AppCompatActivity
 
             //等于按钮
             case R.id.btn_equal:
-                resultText.setText(new CounterByEquation(equation).solveEquation());
+                checkInput.setEquation(equation);
+                if(checkInput.checkEqual())
+                    resultText.setText(new CounterByEquation(equation).solveEquation());
                 break;
+
+                //x^y
+            case R.id.Involution:
+                checkInput.setEquation(equation);
+                if(checkInput.checkInvolutionInput())
+                    equation+="^";
+                break;
+            /*
+             * 倒数
+             * */
+            case R.id.Reciprocal:
+                checkInput.setEquation(equation);
+                if(checkInput.checkReciprocalInput())
+                    equation+="^(-1)";
+                break;
+            /*
+             * 左括号
+             * */
+            case R.id.LBracket:
+                checkInput.setEquation(equation);
+                if(checkInput.checkLBracketInput())
+                    equation+="(";
+                break;
+            /*
+             * 右括号
+             * */
+            case R.id.RBracket:
+                checkInput.setEquation(equation);
+                if(checkInput.checkRBracketInput())
+                    equation+=')';
+                break;
+            /*
+             * 求阶乘
+             * */
+            case R.id.Factorial:
+                checkInput.setEquation(equation);
+                if(checkInput.checkFactorialInput())
+                    equation+='!';
+                break;
+
         }
         equationText.setText(equation);
     }
@@ -208,8 +251,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, scale.class);
             startActivity(intent);
             finish();
-
-        } else if (id == R.id.nav_send) {
 
         }
 

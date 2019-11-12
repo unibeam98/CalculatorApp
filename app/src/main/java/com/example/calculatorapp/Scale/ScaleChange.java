@@ -13,15 +13,17 @@ public class ScaleChange{
     }
 
     String count(){
-        int num = Integer.parseInt(equation);
         int middle = 0;
         String dec = "";
         switch (scale1){
             case "十进制":
-                middle = num;
+                middle = Integer.parseInt(equation);
                 break;
             case "八进制":
                 middle = Integer.parseInt(equation,8);
+                break;
+            case "二进制":
+                middle = Integer.parseInt(equation,2);
                 break;
         }
 
@@ -31,6 +33,10 @@ public class ScaleChange{
                 break;
             case "八进制":
                 dec = Integer.toOctalString(middle);
+                break;
+            case "二进制":
+                dec =  Integer.toBinaryString(middle);
+                break;
         }
         return dec;
     }

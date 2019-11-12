@@ -95,71 +95,71 @@ public class CheckInput {
     /*
      * 检查 x^y
      * */
-//    boolean checkInvolutionInput(){
-//
-//        int length = equation.length();
-//        if(length==0) return false;
-//        char perChar = equation.charAt(length-1);
-//        if(perChar!='1'&&perChar!='2'&&perChar!='3'&&perChar!='4'&&perChar!='5'&&perChar!='6'&&perChar!='7'
-//                &&perChar!='8'&&perChar!='9'&&perChar!='0') return false;
-//        //一个式子里只能有 ^
-//        int iNum = 0;
-//        for(int i = length-1;i>0;i--){
-//            char iChar = equation.charAt(i);
-//
-//            if (iChar=='+'||iChar=='-'||iChar=='*'||iChar=='/'||iChar=='%') break;
-//        }
-//        if(iNum>0) return false;
-//        return true;
-//    }
+    boolean checkInvolutionInput(){
+
+        int length = equation.length();
+        if(length==0) return false;
+        char perChar = equation.charAt(length-1);
+        if(perChar!='1'&&perChar!='2'&&perChar!='3'&&perChar!='4'&&perChar!='5'&&perChar!='6'&&perChar!='7'
+                &&perChar!='8'&&perChar!='9'&&perChar!='0') return false;
+        //一个式子里只能有 ^
+        int iNum = 0;
+        for(int i = length-1;i>0;i--){
+            char iChar = equation.charAt(i);
+
+            if (iChar=='+'||iChar=='-'||iChar=='*'||iChar=='/'||iChar=='%') break;
+        }
+        if(iNum>0) return false;
+        return true;
+    }
     /*
      * 倒数
      * */
-//    boolean checkReciprocalInput(){
-//        int length = equation.length();
-//        if(length==0) return false;
-//        char perChar = equation.charAt(length-1);
-//        if(perChar!='1'&&perChar!='2'&&perChar!='3'&&perChar!='4'&&perChar!='5'&&perChar!='6'&&perChar!='7'
-//                &&perChar!='8'&&perChar!='9'&&perChar!='0') return false;
-//        //单独一个0不能求倒数
-//        int iNum = 0;
-//        for(int i = length-1;i>=0;i--){
-//            char iChar = equation.charAt(i);
-//            iNum++;
-//            if (iChar=='+'||iChar=='-'||iChar=='*'||iChar=='/'||iChar=='%') break;
-//        }
-//        if(iNum==1&&perChar=='0') return false;
-//        return true;
-//    }
+    boolean checkReciprocalInput(){
+        int length = equation.length();
+        if(length==0) return false;
+        char perChar = equation.charAt(length-1);
+        if(perChar!='1'&&perChar!='2'&&perChar!='3'&&perChar!='4'&&perChar!='5'&&perChar!='6'&&perChar!='7'
+                &&perChar!='8'&&perChar!='9'&&perChar!='0') return false;
+        //单独一个0不能求倒数
+        int iNum = 0;
+        for(int i = length-1;i>=0;i--){
+            char iChar = equation.charAt(i);
+            iNum++;
+            if (iChar=='+'||iChar=='-'||iChar=='*'||iChar=='/'||iChar=='%') break;
+        }
+        if(iNum==1&&perChar=='0') return false;
+        return true;
+    }
 //    /*
 //     * 输入左括号
 //     * */
-//    boolean checkLBracketInput(){
-//        int length = equation.length();
-//        if(length==0) return true;
-//        char perChar = equation.charAt(length-1);
-//        if(perChar=='+'||perChar=='-'||perChar=='*'||perChar=='/'||perChar=='%'||perChar=='^'||perChar=='(') return true;
-//        return false;
-//    }
+    boolean checkLBracketInput(){
+        int length = equation.length();
+        if(length==0) return true;
+        char perChar = equation.charAt(length-1);
+        if(perChar=='+'||perChar=='-'||perChar=='*'||perChar=='/'||perChar=='%'||perChar=='^'||perChar=='(') return true;
+        return false;
+    }
 //    /*
 //     * 输入右括号
 //     * */
-//    boolean checkRBracketInput(){
-//        int length = equation.length();
-//        if(length==0) return false;
-//        char perChar = equation.charAt(length-1);
-//        //左右符号要匹配
-//        int lNum = 0,rNum = 0;
-//        for(int i = length-1;i>=0;i--){
-//            char checkChar = equation.charAt(i);
-//            if(checkChar=='(') lNum++;
-//            if(checkChar==')') rNum++;
-//            if(lNum-rNum==1) break;
-//        }
-//        if((lNum-rNum==1)&&(perChar=='1'||perChar=='2'||perChar=='3'||perChar=='4'||perChar=='5'||perChar=='6'||perChar=='7'
-//                ||perChar=='8'||perChar=='9'||perChar=='0'||perChar==')')) return true;
-//        return false;
-//    }
+    boolean checkRBracketInput(){
+        int length = equation.length();
+        if(length==0) return false;
+        char perChar = equation.charAt(length-1);
+        //左右符号要匹配
+        int lNum = 0,rNum = 0;
+        for(int i = length-1;i>=0;i--){
+            char checkChar = equation.charAt(i);
+            if(checkChar=='(') lNum++;
+            if(checkChar==')') rNum++;
+            if(lNum-rNum==1) break;
+        }
+        if((lNum-rNum==1)&&(perChar=='1'||perChar=='2'||perChar=='3'||perChar=='4'||perChar=='5'||perChar=='6'||perChar=='7'
+                ||perChar=='8'||perChar=='9'||perChar=='0'||perChar==')')) return true;
+        return false;
+    }
     /*
      *  取余
      * */
@@ -172,21 +172,30 @@ public class CheckInput {
 
         return false;
     }
+
+    boolean checkEqual(){
+        int length = equation.length();
+        if(length == 0) return false;
+        char perChar = equation.charAt(length-1);
+        if(perChar =='-' || perChar == '+'||perChar == '*'||perChar=='/'||perChar=='%')
+            return false;
+        return true;
+    }
     /*
      * 求阶乘
      * */
-//    boolean checkFactorialInput(){
-//        int length = equation.length();
-//        if(length==0) return false;
-//        char perChar = equation.charAt(length-1);
-//        if(perChar=='!'||perChar=='%'||perChar=='^'||perChar=='('||perChar=='+'
-//                ||perChar=='-'||perChar=='*'||perChar=='/') return false;
-//        //小数点阶乘不可以存在
-//        for(int i=length-1;i>=0;i--){
-//            char checkChar = equation.charAt(i);
-//            if(checkChar=='.') return false;
-//            if(checkChar=='+'||checkChar=='-'||checkChar=='*'||checkChar=='/') break;
-//        }
-//        return true;
-//    }
+    boolean checkFactorialInput(){
+        int length = equation.length();
+        if(length==0) return false;
+        char perChar = equation.charAt(length-1);
+        if(perChar=='!'||perChar=='%'||perChar=='^'||perChar=='('||perChar=='+'
+                ||perChar=='-'||perChar=='*'||perChar=='/') return false;
+        //小数点阶乘不可以存在
+        for(int i=length-1;i>=0;i--){
+            char checkChar = equation.charAt(i);
+            if(checkChar=='.') return false;
+            if(checkChar=='+'||checkChar=='-'||checkChar=='*'||checkChar=='/') break;
+        }
+        return true;
+    }
 }

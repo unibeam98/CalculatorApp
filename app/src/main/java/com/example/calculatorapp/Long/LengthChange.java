@@ -163,8 +163,6 @@ public class LengthChange extends AppCompatActivity
             startActivity(intent);
             finish();
 
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

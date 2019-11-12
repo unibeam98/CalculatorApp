@@ -9,12 +9,10 @@
         android:roundIcon="@mipmap/icon1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Scale.scale"
+        <activity
+            android:name=".Scale.scale"
             android:label="进制单位换算"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".help"
             android:label="help"
@@ -34,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Scale.scale_unit_activity"/>
+        <activity android:name=".Scale.scale_unit_activity" />
     </application>
 
 </manifest>

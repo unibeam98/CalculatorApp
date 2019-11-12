@@ -1,7 +1,5 @@
 package com.example.calculatorapp.Scale;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CheckInput_scale {
     private String equation_unit;

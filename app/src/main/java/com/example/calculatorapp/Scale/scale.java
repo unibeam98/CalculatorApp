@@ -164,8 +164,6 @@ public class scale extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -188,6 +186,48 @@ public class scale extends AppCompatActivity
                 case R.id.btn_N5:
                 case R.id.btn_N6:
                 case R.id.btn_N7:
+//            case R.id.btn_N8:
+//            case R.id.btn_N9:
+                    n++;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    if(checkInput_unit.checkNumberUnit() && n <= 9){
+                        resultUnit = checkInput_unit.getEquationUnit();
+                        resultUnit += string_unit;
+                    }
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.Del_change:
+                    n--;
+                    checkInput_unit.setEquationUnit(resultUnit);
+                    checkInput_unit.BackSpaceUnit();
+                    resultUnit = checkInput_unit.getEquationUnit();
+                    value2.setText(new ScaleChange(resultUnit,unit1.getText().toString(),unit2.getText().toString()).count());
+                    break;
+                case R.id.AC_change:
+                    n = 0;
+                    resultUnit = "";
+                    value1.setText(resultUnit);
+                    value2.setText(resultUnit);
+                    break;
+//                case R.id.btn_point:
+//                    checkInput_unit.setEquationUnit(resultUnit);
+//                    if(checkInput_unit.checkPointUnit()){
+//                        resultUnit = checkInput_unit.getEquationUnit();
+//                        resultUnit += string_unit;
+//                    }
+//                    break;
+            }
+        }
+        else if(unit1.getText().toString().equals("二进制")){
+            switch (id_unit){
+                case R.id.btn_N0:
+                case R.id.btn_N1:
+//                case R.id.btn_N2:
+//                case R.id.btn_N3:
+//                case R.id.btn_N4:
+//                case R.id.btn_N5:
+//                case R.id.btn_N6:
+//                case R.id.btn_N7:
 //            case R.id.btn_N8:
 //            case R.id.btn_N9:
                     n++;
