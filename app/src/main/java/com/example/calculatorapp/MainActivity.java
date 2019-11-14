@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     private TextView equationText, resultText;
-    private Button buttons[] = new Button[20];
+    private Button buttons[] = new Button[25];
 
     private CheckInput checkInput;
 

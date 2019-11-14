@@ -66,6 +66,16 @@
                     android:text="/"
                     android:textColor="#6f7480"
                     android:textSize="30sp" />
+                <Button
+                    android:id="@+id/LBracket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_1"
+                    android:text="("
+                    android:textColor="#ff5d00"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -115,7 +125,16 @@
                     android:text="*"
                     android:textColor="#6f7480"
                     android:textSize="30sp" />
-
+                <Button
+                    android:id="@+id/RBracket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_1"
+                    android:text=")"
+                    android:textColor="#6f7480"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -168,6 +187,17 @@
                     android:text="-"
                     android:textColor="#6f7480"
                     android:textSize="30sp" />
+                <Button
+                    android:id="@+id/Factorial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_1"
+                    android:text="!"
+                    android:textColor="#6f7480"
+                    android:textSize="30sp" />
+
 
             </TableRow>
 
@@ -215,6 +245,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/selector_1"
                     android:text="+"
+                    android:textColor="#6f7480"
+                    android:textSize="30sp" />
+                <Button
+                    android:id="@+id/Reciprocal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_1"
+                    android:text="^(-1)"
                     android:textColor="#6f7480"
                     android:textSize="30sp" />
 
@@ -266,6 +306,17 @@
                     android:text="="
                     android:textColor="#6f7480"
                     android:textSize="30sp" />
+                <Button
+                    android:id="@+id/Involution"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_1"
+                    android:text="x^y"
+                    android:textColor="#ff5d00"
+                    android:textSize="30sp"
+                    android:textAllCaps="false"/>
 
             </TableRow>
 
